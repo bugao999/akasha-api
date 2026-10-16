@@ -1,12 +1,13 @@
 module.exports = (req, res) => {
-  const { id } = req.query;
+  const id = req.query.id;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
 
-  if (!id || id.trim() === '' || id === 'undefined') {
-    return res.status(200).send('https://akasha.cv');
+  if (!id || id === 'undefined' || id.trim() === '') {
+    res.status(200).send('https://akasha.cv');
+    return;
   }
 
-  return res.status(200).send(`https://akasha.cv/profile/${id.trim()}`);
+  res.status(200).send(`https://akasha.cv/profile/${id.trim()}`);
 };
