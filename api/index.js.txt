@@ -1,0 +1,17 @@
+export default function handler(req, res) {
+  // Pega o ID passado via query parameter (?id=...) ou na URL
+  const { id } = req.query;
+
+  // Habilita o CORS para permitir requisições de qualquer origem
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+
+  // Lógica condicional
+  if (!id || id.trim() === '') {
+    // Se não informou ID: retorna só a home
+    return res.status(200).send('https://akasha.cv');
+  } else {
+    // Se informou o ID: retorna o link com /profile/ID
+    return res.status(200).send(`https://akasha.cv/profile/${id.trim()}`);
+  }
+}
